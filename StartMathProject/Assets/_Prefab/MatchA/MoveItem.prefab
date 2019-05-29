@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4317707759368328}
   - component: {fileID: 212969956035181406}
   - component: {fileID: 50030820205612192}
-  - component: {fileID: 114549511915008474}
+  - component: {fileID: 114674244122663436}
   m_Layer: 0
   m_Name: MoveItem
   m_TagString: moveItem
@@ -62,7 +62,7 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &114549511915008474
+--- !u!114 &114674244122663436
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1199065270762254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea42d76a2a96e694d89797c8ccdf12e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 5aaa2027f984ec14c8f5e7bb013a6066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212969956035181406

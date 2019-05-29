@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatchPosItemControl : MonoBehaviour {
-
+public class MatchPosItemControl_matchA : MonoBehaviour {
     //正確的配對物件名字
     [HideInInspector]
     public string CorrectColliderObjName;
@@ -27,18 +26,18 @@ public class MatchPosItemControl : MonoBehaviour {
     /// 碰撞到的物件名字，抓取子物件名稱
     /// </summary>
     /// <returns></returns>
-    public List<string> OnCollisionObjName()
+    public List<GameObject> OnCollisionObjName()
     {
-        List<string> m_OnColliderObjName = new List<string>();
+        List<GameObject> m_OnColliderObjName = new List<GameObject>();
         if (OnCollidionrObjCount() == 0)
         {
-            m_OnColliderObjName.Add("noName");
+            m_OnColliderObjName.Add(null);
         }
         else
         {
-            for (int i = 0; i < OnCollidionrObjCount() ; i++)
+            for (int i = 0; i < OnCollidionrObjCount(); i++)
             {
-                m_OnColliderObjName.Add(this.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite.name);
+                m_OnColliderObjName.Add(this.transform.GetChild(i).gameObject);
             }
         }
         return m_OnColliderObjName;
@@ -91,5 +90,4 @@ public class MatchPosItemControl : MonoBehaviour {
     //        //ObjInItemCount--;
     //    }
     //}
-
 }

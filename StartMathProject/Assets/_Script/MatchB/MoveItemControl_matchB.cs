@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveItemControl : MonoBehaviour
-{
-
+public class MoveItemControl_matchB : MonoBehaviour {
     Vector3 m_OriginalPos;
     Vector3 m_DragStartPos;
     Vector3 m_DragEndPos;
@@ -44,10 +42,8 @@ public class MoveItemControl : MonoBehaviour
             this.transform.position = m_OriginalPos;
         }
         else if (m_ColliderObj != null && m_ColliderObj.tag == "matchPosItem")
-        {//如果有碰到感應區，則移動到感應區位置
+        {//移動夠多，如果有碰到感應區，則成為子物件
             this.transform.SetParent(m_ColliderObj.transform);
-            transform.position = new Vector2(this.m_ColliderObj.transform.position.x, this.m_ColliderObj.transform.position.y + 1f);
-               
         }
     }
 
@@ -59,16 +55,13 @@ public class MoveItemControl : MonoBehaviour
         //判斷數量跟tag     
         if (collision.tag == "matchPosItem")
         {
-            if (collision.GetComponent<MatchPosItemControl>().OnCollidionrObjCount() == 0)
-            {
-                m_ColliderObj = collision.gameObject;
-            }
+            m_ColliderObj = collision.gameObject;
         }
         else
         {
             m_ColliderObj = moveArea.gameObject;
         }
-        
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -102,11 +102,11 @@ public class MatchAManager : MonoBehaviour {
             MatchPosItemObj[i].GetComponent<SpriteRenderer>().sprite = _matchPosItems[i].MatchPosItemSprite;
             MatchPosItemObj[i].transform.position = _matchPosItems[i].MatchPosItemPosition;
             //生成時給予要配對的圖片名稱
-            MatchPosItemObj[i].GetComponent<MatchPosItemControl>().CorrectColliderObjName = _matchPosItems[i].CorrectMoveItemSpriteName.name;
+            MatchPosItemObj[i].GetComponent<MatchPosItemControl_matchA>().CorrectColliderObjName = _matchPosItems[i].CorrectMoveItemSpriteName.name;
             //生成時給予正確要生成的物件
-            MatchPosItemObj[i].GetComponent<MatchPosItemControl>().CorrectObj = _matchPosItems[i].CorrectObj;
+            MatchPosItemObj[i].GetComponent<MatchPosItemControl_matchA>().CorrectObj = _matchPosItems[i].CorrectObj;
             //生成時給予正確物件生成位置
-            MatchPosItemObj[i].GetComponent<MatchPosItemControl>().CorrectObjPos = _matchPosItems[i].CorrectObjPos;
+            MatchPosItemObj[i].GetComponent<MatchPosItemControl_matchA>().CorrectObjPos = _matchPosItems[i].CorrectObjPos;
         }
     }
 
@@ -137,10 +137,10 @@ public class MatchAManager : MonoBehaviour {
     /// </summary>
     void CheckPass()
     {
-        List<MatchPosItemControl> m_MatchPosItemControl = new List<MatchPosItemControl>();
+        List<MatchPosItemControl_matchA> m_MatchPosItemControl = new List<MatchPosItemControl_matchA>();
         foreach (var matchPosItemObj in MatchPosItemObj)
         {
-            m_MatchPosItemControl.Add(matchPosItemObj.GetComponent<MatchPosItemControl>());
+            m_MatchPosItemControl.Add(matchPosItemObj.GetComponent<MatchPosItemControl_matchA>());
         }
 
         for (int i = 0 ; i< m_MatchPosItemControl.Count; i++)
@@ -154,7 +154,7 @@ public class MatchAManager : MonoBehaviour {
             //判斷所有感應區物件名稱是否正確
             foreach (var onColliderObjName in m_MatchPosItemControl[i].OnCollisionObjName())
             {
-                if (onColliderObjName != m_MatchPosItemControl[i].CorrectColliderObjName)
+                if (onColliderObjName.GetComponent<SpriteRenderer>().sprite.name != m_MatchPosItemControl[i].CorrectColliderObjName)
                 {
                     Debug.Log("物件名稱錯誤");
                     return;
@@ -167,9 +167,10 @@ public class MatchAManager : MonoBehaviour {
         {
             foreach (var onColliderObjName in m_MatchPosItemControl[i].OnCollisionObjName())
             {             
-                if (onColliderObjName == m_MatchPosItemControl[i].CorrectColliderObjName)
+                if (onColliderObjName.GetComponent<SpriteRenderer>().sprite.name == m_MatchPosItemControl[i].CorrectColliderObjName)
                 {
                     Debug.Log("正確");
+                    //把感應區當成母物件
                     InstanceCorrectObj(m_MatchPosItemControl[i].CorrectObj, m_MatchPosItemControl[i].gameObject, m_MatchPosItemControl[i].CorrectObjPos);
                     //隱藏原本的sprite
                     //MatchPosItemObj[i].GetComponent<SpriteRenderer>().enabled = false;
